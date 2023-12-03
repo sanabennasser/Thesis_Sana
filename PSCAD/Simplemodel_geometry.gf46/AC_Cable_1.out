@@ -1,0 +1,30 @@
+ =====================================================
+  PSCAD LINE CONSTANTS PROGRAM OUTPUT FILE (*.out)
+
+  NOTE: This file is auto-generated.  Any manual
+        changes will be lost once the Line Constants
+        Program is re-run.
+ =====================================================
+
+  Display Format: M,N denotes a complex number M + jN
+
+
+ -----------------------------------------------------
+  PHASE DOMAIN DATA @      50.000 Hz:
+ -----------------------------------------------------
+
+ SERIES IMPEDANCE MATRIX (Z) [ohms/m]: 
+    0.157427733E-03,0.755325380E-03   0.494399789E-04,0.692625039E-03
+    0.494399789E-04,0.692625039E-03   0.185459209E-02,0.692556145E-03
+
+ SHUNT ADMITTANCE MATRIX (Y) [mhos/m]: 
+    0.642409993E-11,0.535341661E-07   -.642409993E-11,-.535341661E-07
+    -.642409993E-11,-.535341661E-07   0.130929513E-09,0.109107927E-05
+
+ -----------------------------------------------------
+  MINIMUM TIME DELAY AND RECOMMENDED TIME STEP
+ -----------------------------------------------------
+   
+   Minimum Time Delay for the Line    [ms]:     0.005045497
+   Maximum Recommended Time Step for the Line [ms]:     0.000504550
+   
