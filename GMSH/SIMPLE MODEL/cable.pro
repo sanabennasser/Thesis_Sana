@@ -24,7 +24,7 @@ DefineConstant[
 
 Group {
   XLPE = Region[{XLPE}];
-  CU = Region[{CU}];
+  //CU = Region[{CU}];
   OuterPVC = Region[{OPVC}];
   SoilEM = Region[{SOIL_EM}];
   Soil = Region[{SoilEM}];
@@ -34,16 +34,22 @@ Group {
     Inds += Region[{(WIRE+k-1)}];
   EndFor
   // electrodynamics
-  Cable = Region[{Inds, XLPE,CU,OuterPVC}]; // All the regions in the cable, for convenience and postprocessing
+  Cable = Region[{Inds, XLPE,
+    //CU,
+    OuterPVC}]; // All the regions in the cable, for convenience and postprocessing
   SurfaceGe0 = Region[{OUTBND_EM}]; //n.b=0 on this boundary
-  Ele=Region[{Inds,XLPE,CU,OuterPVC,SoilEM}];
+  Ele=Region[{Inds,XLPE,
+    //CU,
+    OuterPVC,SoilEM}];
 
 //  Ele += Region[{}];
   Domain_Ele= Region[{Ele}];
   //magnetodynamics
   DomainS_Mag= Region[{Inds}]; // If using Current_2D, it allows accounting for the dependance of sigma with T
   DomainCC_Mag = Region[{SoilEM,XLPE,OuterPVC,Inds}];// Non-conduction domain
-  DomainC_Mag = Region [{CU}];// Conducting domain //the aluminum shealth, the steel armour and the steel pipe.
+  DomainC_Mag = Region [{
+    //CU
+  }];// Conducting domain //the aluminum shealth, the steel armour and the steel pipe.
   DomainS0_Mag= Region[{}]; //if imposing source with js0[]
 
   DomainCWtihI_Mag = Region[{}];
@@ -62,17 +68,21 @@ Function {
   // - if you have more than one region with the same characteristic: nu[Region[{MyRegion1, MyRegion2}]] = 1/(mu0*mur_steel);
   // ATTENTION: You can't define the function twice for a Physical Region, you will get a runtime error
   nu[Region[{Inds}]]=1./mu0;
-  nu[Region[{XLPE,Soil,CU}]]=1./mu0;
+  nu[Region[{XLPE,Soil
+    //,CU
+  }]]=1./mu0;
   nu[Region[{OuterPVC}]]=1./(mu0*mur_pvc);
 
   sigma[OuterPVC]=sigma_pvc;
-  sigma[CU]=sigma_cu;
+  //sigma[CU]=sigma_cu;
   sigma[XLPE]= sigma_xlpe;
   sigma[Soil]=sigma_soil;
   sigma[Inds]= sigma_cu;
 
 
-  epsilon[Region[{Inds,Soil,CU}]]=eps0;
+  epsilon[Region[{Inds,Soil
+    //,CU
+  }]]=eps0;
   epsilon[Region[{XLPE}]]=eps0*espr_xlpe;
   epsilon[Region[{OuterPVC}]]=eps0*espr_pvc;
  
